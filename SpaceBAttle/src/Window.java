@@ -80,8 +80,8 @@ public class Window extends javax.swing.JFrame {
 
     private void plan1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plan1MouseMoved
         // TODO add your handling code here:
-         plan1.setMouseX(evt.getXOnScreen());
-        plan1.setMouseY(evt.getYOnScreen());
+         plan1.setMouseX(evt.getX());
+        plan1.setMouseY(evt.getY());
         
         plan1.repaint();
     }//GEN-LAST:event_plan1MouseMoved

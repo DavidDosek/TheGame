@@ -58,14 +58,12 @@ public class Plan extends JComponent{
         g2d.fillOval(player.getPaintX(), player.getPaintY(), player.getTurretWidth(), player.getTurretWidth());
         //kreslime hlavici
         
-        /*System.out.println(player.getHeadX());
-        System.out.println(player.getHeadY());*/
+        
         g2d.setColor(Color.red);
         g2d.fillOval(player.getHeadX(), player.getHeadY(), 10,10);
         paintBullets(g2d);
-        g2d.setColor(Color.black);
-        g2d.fillOval(player.getX(), player.getY(), 5, 5);
-        System.out.println(mouseY);
+        
+        
     }
     
     

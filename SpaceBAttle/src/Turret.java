@@ -32,16 +32,7 @@ public class Turret {
         baseHeadX = x;
         baseHeadY = y+turretHeadLenght;
     }
-        //something i dont understand
-    public Polygon getHeadPolygon() {
-        int[] x = {headX, this.x, this.x + turretWidth};
-        int[] y = {headY, this.y, this.y + turretWidth};
-        int numberOfPoints = 3;
-        Polygon turret = new Polygon(x, y, numberOfPoints);
-
-        return turret;
-
-    }
+       
 
     public void setHeadCords(int mouseX, int mouseY) {
         setAngle(mouseX, mouseY);
@@ -53,8 +44,7 @@ public class Turret {
     //turns the point with X,Y cords by "angle" radians
     private Pair turnPoint(double angle, int baseX, int baseY) {
         Pair rotatedPoint = new Pair();
-        /*int x = (int) (baseX * Math.cos(angle) - baseY * Math.sin(angle));
-        int y = (int) (baseX * Math.sin(angle) + baseY * Math.cos(angle));*/
+        
         int x = (int) (this.x+headLenght*Math.cos(angle));
         int y = (int) (this.y+headLenght*Math.sin(angle));
         rotatedPoint.setX(x);
@@ -67,10 +57,7 @@ public class Turret {
         double x = mouseX - this.x;
         double y = mouseY - this.y;
 
-        /*double angle = Math.atan(x / y);
-        double radAngle = Math.toRadians(angle);
-        System.out.println(radAngle);
-        return radAngle;*/
+        
         double angle = Math.atan2(y, x);
         this.angle = angle;
     }
