@@ -37,6 +37,4 @@ public class Bullet {
         x = (int)(x+speed*Math.cos(direction));
         y = (int)(y+speed*Math.sin(direction));
     }
-    
-    // git check
 }
