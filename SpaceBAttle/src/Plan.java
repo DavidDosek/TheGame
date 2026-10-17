@@ -60,7 +60,7 @@ public class Plan extends JComponent{
         
         
         g2d.setColor(Color.red);
-        g2d.fillOval(player.getHeadX(), player.getHeadY(), 10,10);
+        g2d.fillOval(player.getHeadX()-5, player.getHeadY()-5, 10,10);
         paintBullets(g2d);
         
         
@@ -76,13 +76,29 @@ public class Plan extends JComponent{
         while (i<bullets.size()) {
             Bullet b = bullets.get(i);
             b.updatePos();
-            if (b.getX()>screenWidth||b.getX()<0||b.getY()>screenHeight||b.getY()<0) {
+            if (b.getPaintX()>screenWidth||b.getPaintX()<0||b.getPaintY()>screenHeight||b.getPaintY()<0) {
                 bullets.remove(b);
             }else{
                 g2d.setColor(Color.YELLOW);
-            g2d.fillOval(b.getX(), b.getY(), 10, 10);
+            g2d.fillOval(b.getPaintX(), b.getPaintY(), 10, 10);
+            /* hitbox testing
+             g2d.setColor(Color.green);
+             g2d.drawRect(b.getHitboxX(), b.getHitboxY(), b.getDamage(), b.getDamage());*/
+                // just a test, to be finished checkCollision(b);
             }
             i++;
+        }
+        
+    }
+    //finise this fumction after doind meteor
+    private void checkCollision(Bullet b){
+        if (bullets.size()>=2) {
+            for (int i = bullets.indexOf(b); i < bullets.size(); i++) {
+            if (b.checkColision(bullets.get(i).getHitbox())) {
+                bullets.remove(b);
+                bullets.remove(i);
+            }
+        }
         }
         
     }

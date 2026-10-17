@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/xdosek1/Documents/NetBeansProjects/SpaceBAttle/src/Turret.java</file>
-            <file>file:/C:/Users/xdosek1/Documents/NetBeansProjects/SpaceBAttle/src/Plan.java</file>
-            <file>file:/C:/Users/xdosek1/Documents/NetBeansProjects/SpaceBAttle/src/Meteor.java</file>
-            <file>file:/C:/Users/xdosek1/Documents/NetBeansProjects/SpaceBAttle/src/Window.java</file>
+            <file>file:/C:/NetBeans/netbeansProjects/TheGame/SpaceBAttle/src/Turret.java</file>
+            <file>file:/C:/NetBeans/netbeansProjects/TheGame/SpaceBAttle/src/Plan.java</file>
+            <file>file:/C:/NetBeans/netbeansProjects/TheGame/SpaceBAttle/src/Bullet.java</file>
+            <file>file:/C:/NetBeans/netbeansProjects/TheGame/SpaceBAttle/src/Meteor.java</file>
+            <file>file:/C:/NetBeans/netbeansProjects/TheGame/SpaceBAttle/src/Pair.java</file>
+            <file>file:/C:/NetBeans/netbeansProjects/TheGame/SpaceBAttle/src/Window.java</file>
         </group>
     </open-files>
 </project-private>
