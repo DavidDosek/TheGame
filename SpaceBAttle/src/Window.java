@@ -8,7 +8,7 @@
  * @author xdosek1
  */
 public class Window extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Window.class.getName());
 
     /**
@@ -70,39 +70,43 @@ public class Window extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-       
+
         plan1.repaint();
-       
+
     }//GEN-LAST:event_formComponentResized
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
         // TODO add your handling code here:
-       
-    }//GEN-LAST:event_formMouseMoved
 
+    }//GEN-LAST:event_formMouseMoved
+    //DO A GAME CYCLE USING FALL THROUGH SWITCH AND BOOLEANS
     private void plan1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plan1MouseMoved
-        // TODO add your handling code here:
-         plan1.setMouseX(evt.getX());
+        if (plan1.isFreezedScreen()) {
+            return;
+        }
+// TODO add your handling code here:
+        plan1.setMouseX(evt.getX());
         plan1.setMouseY(evt.getY());
-        
-        
+
         plan1.repaint();
     }//GEN-LAST:event_plan1MouseMoved
 
     private void plan1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plan1MouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_plan1MouseClicked
 
     private void plan1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plan1MousePressed
-      plan1.setMouseX(evt.getX());
+        if (plan1.isFreezedScreen()) {
+            return;
+        }
+        plan1.setMouseX(evt.getX());
         plan1.setMouseY(evt.getY());
         plan1.shoot();
-        
-      
+
         plan1.repaint();
     }//GEN-LAST:event_plan1MousePressed
-    
+
     /**
      * @param args the command line arguments
      */
@@ -126,11 +130,9 @@ public class Window extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new Window().setVisible(true));
-        
-        
+
     }
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Plan plan1;

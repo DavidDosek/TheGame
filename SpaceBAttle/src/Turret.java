@@ -76,6 +76,7 @@ public class Turret {
         int x = headX;
         int y = headY;
         double angle = this.angle;
+        
         Bullet b = new Bullet(x, y, targetX, targetY, 1, 10);
         return b;
     }
