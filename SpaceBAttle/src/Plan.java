@@ -51,7 +51,7 @@ public class Plan extends JComponent {
         g2d.drawImage(player.getBodyTexture(), player.getPaintX(), player.getPaintY(), player.getTurretWidth(), player.getTurretWidth(), null);
         //kreslime hlavici
 
-        g2d.fillOval(player.getHeadX() - 5, player.getHeadY() - 5, 10, 10);
+        
         g2d.drawImage(player.getHeadTexture(), player.getHeadX() - player.getTurretWidth() / 10, player.getHeadY() - player.getTurretWidth() / 10, player.getTurretWidth() / 5, player.getTurretWidth() / 5, null);
         paintBullets(g2d);
 

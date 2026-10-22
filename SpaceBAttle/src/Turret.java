@@ -5,6 +5,7 @@ import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 /*
@@ -36,9 +37,11 @@ public class Turret {
         this.turretWidth = turretWidth;
         baseHeadX = x;
         baseHeadY = y + turretHeadLenght;
-        File bodyFile = new File("C:\\Users\\xdosek1\\Documents\\NetBeansProjects\\SpaceBAttle\\src\\Textures\\player.png");
+
+        InputStream bodyFile = getClass().getResourceAsStream("/Textures/player.png");
         bodyTexture = ImageIO.read(bodyFile);
-        File headFile = new File("C:\\Users\\xdosek1\\Documents\\NetBeansProjects\\SpaceBAttle\\src\\Textures\\playerHead.png");
+        InputStream headFile = getClass().getResourceAsStream("/Textures/playerHead.png");
+
         headTexture = ImageIO.read(headFile);
     }
 
@@ -92,6 +95,7 @@ public class Turret {
     public BufferedImage getHeadTexture() {
         return headTexture;
     }
+
     public int getHeadX() {
         return headX;
     }
