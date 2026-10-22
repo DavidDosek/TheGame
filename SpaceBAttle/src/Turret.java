@@ -2,6 +2,10 @@
 import java.awt.Polygon;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -22,17 +26,21 @@ public class Turret {
     private int baseHeadX;
     private int baseHeadY;
     private double angle;
-    
+    private BufferedImage bodyTexture;
+    private BufferedImage headTexture;
 
-    public Turret(int x, int y, int turretHeadLenght, int turretWidth) {
+    public Turret(int x, int y, int turretHeadLenght, int turretWidth) throws IOException {
         this.x = x;
         this.y = y;
         this.headLenght = turretHeadLenght;
         this.turretWidth = turretWidth;
         baseHeadX = x;
-        baseHeadY = y+turretHeadLenght;
+        baseHeadY = y + turretHeadLenght;
+        File bodyFile = new File("C:\\Users\\xdosek1\\Documents\\NetBeansProjects\\SpaceBAttle\\src\\Textures\\player.png");
+        bodyTexture = ImageIO.read(bodyFile);
+        File headFile = new File("C:\\Users\\xdosek1\\Documents\\NetBeansProjects\\SpaceBAttle\\src\\Textures\\playerHead.png");
+        headTexture = ImageIO.read(headFile);
     }
-       
 
     public void setHeadCords(int mouseX, int mouseY) {
         setAngle(mouseX, mouseY);
@@ -44,9 +52,9 @@ public class Turret {
     //turns the point with X,Y cords by "angle" radians
     private Pair turnPoint(double angle, int baseX, int baseY) {
         Pair rotatedPoint = new Pair();
-        
-        int x = (int) (this.x+headLenght*Math.cos(angle));
-        int y = (int) (this.y+headLenght*Math.sin(angle));
+
+        int x = (int) (this.x + headLenght * Math.cos(angle));
+        int y = (int) (this.y + headLenght * Math.sin(angle));
         rotatedPoint.setX(x);
         rotatedPoint.setY(y);
         return rotatedPoint;
@@ -57,16 +65,15 @@ public class Turret {
         double x = mouseX - this.x;
         double y = mouseY - this.y;
 
-        
         double angle = Math.atan2(y, x);
         this.angle = angle;
     }
-    
-    public Bullet shoot(int targetX, int targetY){
+
+    public Bullet shoot(int targetX, int targetY) {
         int x = headX;
         int y = headY;
         double angle = this.angle;
-        Bullet b = new Bullet(x,y,targetX,targetY,1,10);
+        Bullet b = new Bullet(x, y, targetX, targetY, 1, 10);
         return b;
     }
 
@@ -78,10 +85,13 @@ public class Turret {
         return y - turretWidth / 2;
     }
 
-    
+    public BufferedImage getBodyTexture() {
+        return bodyTexture;
+    }
 
-    
-
+    public BufferedImage getHeadTexture() {
+        return headTexture;
+    }
     public int getHeadX() {
         return headX;
     }
