@@ -50,6 +50,9 @@ public class Window extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 plan1MouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                plan1MousePressed(evt);
+            }
         });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -67,8 +70,7 @@ public class Window extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-        plan1.setScreenHeight(evt.getComponent().getHeight());
-        plan1.setScreenWidth(evt.getComponent().getWidth());
+       
         plan1.repaint();
        
     }//GEN-LAST:event_formComponentResized
@@ -83,14 +85,22 @@ public class Window extends javax.swing.JFrame {
          plan1.setMouseX(evt.getX());
         plan1.setMouseY(evt.getY());
         
+        
         plan1.repaint();
     }//GEN-LAST:event_plan1MouseMoved
 
     private void plan1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plan1MouseClicked
         // TODO add your handling code here:
-        plan1.shoot();
-        plan1.repaint();
+        
     }//GEN-LAST:event_plan1MouseClicked
+
+    private void plan1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plan1MousePressed
+      plan1.setMouseX(evt.getX());
+        plan1.setMouseY(evt.getY());
+        plan1.shoot();
+      
+        plan1.repaint();
+    }//GEN-LAST:event_plan1MousePressed
     
     /**
      * @param args the command line arguments

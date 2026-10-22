@@ -16,18 +16,12 @@ import java.util.LinkedList;
  * @author xdosek1
  */
 public class Plan extends JComponent{
-    private int screenWidth=400;
-    private int screenHeight=300;
+   
     private int mouseX = 1;
     private int mouseY = 1;
     
-    public void setScreenWidth(int screenWidth) {
-        this.screenWidth = screenWidth;
-    }
-
-    public void setScreenHeight(int screenHeight) {
-        this.screenHeight = screenHeight;
-    }
+    
+    
 
     public void setMouseX(int mouseX) {
         this.mouseX = mouseX;
@@ -41,7 +35,7 @@ public class Plan extends JComponent{
 
     
     
-    private Turret player = new Turret(screenWidth/2, screenHeight/2, 50, 50);
+    private Turret player = new Turret(getWidth()/2, getHeight()/2, 50, 50);
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -49,9 +43,9 @@ public class Plan extends JComponent{
         
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.black);
-        g2d.fillRect(0, 0, screenWidth, screenHeight);
+        g2d.fillRect(0, 0, getWidth(), getHeight());
         //updejtujeme pozici hraci v pripade resize okna
-        player.updatePos(screenWidth/2, screenHeight/2,mouseX,mouseY);
+        player.updatePos(getWidth()/2, getHeight()/2,mouseX,mouseY);
         //kreslime hrace
         g2d.setColor(Color.blue);
         
@@ -76,7 +70,7 @@ public class Plan extends JComponent{
         while (i<bullets.size()) {
             Bullet b = bullets.get(i);
             b.updatePos();
-            if (b.getPaintX()>screenWidth||b.getPaintX()<0||b.getPaintY()>screenHeight||b.getPaintY()<0) {
+            if (b.getPaintX()>getWidth()||b.getPaintX()<0||b.getPaintY()>getHeight()||b.getPaintY()<0) {
                 bullets.remove(b);
             }else{
                 g2d.setColor(Color.YELLOW);
@@ -103,7 +97,7 @@ public class Plan extends JComponent{
         
     }
     public void shoot(){
-        bullets.add(player.shoot());
+        bullets.add(player.shoot(mouseX,mouseY));
     }
     
 }

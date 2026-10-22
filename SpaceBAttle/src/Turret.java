@@ -62,11 +62,11 @@ public class Turret {
         this.angle = angle;
     }
     
-    public Bullet shoot(){
+    public Bullet shoot(int targetX, int targetY){
         int x = headX;
         int y = headY;
         double angle = this.angle;
-        Bullet b = new Bullet(x,y,angle,5,10);
+        Bullet b = new Bullet(x,y,targetX,targetY,1,10);
         return b;
     }
 
