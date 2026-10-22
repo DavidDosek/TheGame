@@ -29,12 +29,17 @@ public class Plan extends JComponent {
         this.mouseY = mouseY;
     }
 
-    public Plan() throws IOException {
-        player = new Turret(getWidth() / 2, getHeight() / 2, 50, 50);
+    public Plan() {
+        try {
+            player = new Turret(getWidth() / 2, getHeight() / 2, 50, 50);
+        } catch (IOException ex) {
+            System.getLogger(Plan.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
     }
 
     @Override
     protected void paintComponent(Graphics g) {
+//enabled at muzu freeznout isEnabled(); paint component vykresluje prazdny obrazek i kdyz tam nic neni
 
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(Color.gray);
@@ -46,9 +51,8 @@ public class Plan extends JComponent {
         g2d.drawImage(player.getBodyTexture(), player.getPaintX(), player.getPaintY(), player.getTurretWidth(), player.getTurretWidth(), null);
         //kreslime hlavici
 
-        
         g2d.fillOval(player.getHeadX() - 5, player.getHeadY() - 5, 10, 10);
-        g2d.drawImage(player.getHeadTexture(), player.getHeadX()-player.getTurretWidth()/10, player.getHeadY()-player.getTurretWidth()/10, player.getTurretWidth()/5, player.getTurretWidth()/5, null);
+        g2d.drawImage(player.getHeadTexture(), player.getHeadX() - player.getTurretWidth() / 10, player.getHeadY() - player.getTurretWidth() / 10, player.getTurretWidth() / 5, player.getTurretWidth() / 5, null);
         paintBullets(g2d);
 
     }

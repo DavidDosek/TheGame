@@ -98,6 +98,7 @@ public class Window extends javax.swing.JFrame {
       plan1.setMouseX(evt.getX());
         plan1.setMouseY(evt.getY());
         plan1.shoot();
+        
       
         plan1.repaint();
     }//GEN-LAST:event_plan1MousePressed
