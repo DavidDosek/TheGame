@@ -50,15 +50,26 @@ public class Plan extends JComponent implements KeyListener {
 
     @Override
     protected void paintComponent(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
         //enabled at muzu freeznout isEnabled(); paint component vykresluje prazdny obrazek i kdyz tam nic neni
         if (!freezedScreen) {
-            Graphics2D g2d = (Graphics2D) g;
+            
             g2d.setColor(Color.gray);
             g2d.fillRect(0, 0, getWidth(), getHeight());
             //updejtujeme pozici hraci v pripade resize okna
             player.updatePos(getWidth() / 2, getHeight() / 2, mouseX, mouseY);
             player.paintPlayer(g2d);
-            bulletsManager.paintBullets(g2d, getWidth(),getHeight());
+            bulletsManager.paintBullets(g2d, getWidth(),getHeight(), false);
+            
+        } else{
+            g2d.setColor(Color.gray);
+            g2d.fillRect(0, 0, getWidth(), getHeight());
+            player.paintPlayer(g2d);
+            bulletsManager.paintBullets(g2d, getWidth(),getHeight(),true);
+            player.updatePos(getWidth() / 2, getHeight() / 2);
+            
+            g2d.setColor(new Color(10, 10, 10,100));
+            g2d.fillRect(0, 0, getWidth(), getHeight());
         }
 
     }

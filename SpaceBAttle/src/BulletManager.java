@@ -36,13 +36,16 @@ public class BulletManager {
         bullets.add(b);
     }
 
-    public void paintBullets(Graphics2D g2d, int screenWidth, int screenHeight) {
+    public void paintBullets(Graphics2D g2d, int screenWidth, int screenHeight, boolean frozen) {
         int i = 0;
 
         //proc tu je while a ne for each???, zamysli se a bud chytry :)))
         while (i < bullets.size()) {
             Bullet b = bullets.get(i);
-            b.updatePos();
+            if (!frozen) {
+                b.updatePos();
+            }
+            
             if (b.getPaintX() > screenWidth || b.getPaintX() < 0 || b.getPaintY() > screenHeight || b.getPaintY() < 0) {
                 bullets.remove(b);
             } else {

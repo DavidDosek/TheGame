@@ -136,6 +136,12 @@ public class Turret {
         this.y = y;
         setHeadCords(mouseX, mouseY);
     }
+    
+    public void updatePos(int x, int y) {
+        this.x = x;
+        this.y = y;
+        
+    }
 
     public void paintPlayer(Graphics2D g2d) {
         g2d.setColor(Color.gray);
