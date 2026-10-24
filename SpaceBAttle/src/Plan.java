@@ -38,7 +38,7 @@ public class Plan extends JComponent implements KeyListener {
     }
 
     public Plan() {
-        bulletsManager = new BulletManager();
+        bulletsManager = new BulletManager(10);
         try {
             player = new Turret(getWidth() / 2, getHeight() / 2, 50, 50);
         } catch (IOException ex) {

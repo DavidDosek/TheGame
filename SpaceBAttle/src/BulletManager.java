@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
 import javax.imageio.ImageIO;
+import javax.swing.Timer;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -20,20 +21,46 @@ public class BulletManager {
     private LinkedList<Bullet> bullets = new LinkedList<>();
     private BufferedImage bulletTexture;
     final private int bulletWidth = 10;
+    private final Timer reloadTimer;
+    int maxAmmo;
+    int curAmmo;
     
     
 
-    public BulletManager() {
+    public BulletManager(int maxAmmo) {
         InputStream bodyFile = getClass().getResourceAsStream("/Textures/bullet.png");
         try {
             bulletTexture  = ImageIO.read(bodyFile);
         } catch (IOException ex) {
             System.getLogger(BulletManager.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
+        reloadTimer = new Timer(1000, e -> {
+
+            reload(1);
+            System.out.println(curAmmo);
+        });
+        reloadTimer.start();
+        this.maxAmmo = maxAmmo;
+        curAmmo = maxAmmo;
+    }
+    
+    private void reload(int numberToReload){
+        if (curAmmo+numberToReload>maxAmmo) {
+            curAmmo = maxAmmo;
+        } else if(curAmmo+numberToReload<0){
+           curAmmo = 0;
+        } else{
+            curAmmo+=numberToReload;
+        }
     }
 
     public void addBullet(Bullet b) {
-        bullets.add(b);
+        if (curAmmo>0) {
+            bullets.add(b);
+            curAmmo--;
+            System.out.println(curAmmo);
+        }
+        
     }
 
     public void paintBullets(Graphics2D g2d, int screenWidth, int screenHeight, boolean frozen) {
