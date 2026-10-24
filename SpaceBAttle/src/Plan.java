@@ -84,7 +84,7 @@ public class Plan extends JComponent implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_E) {
 
             freezedScreen = !freezedScreen;
-            repaint();
+            
         }
     }
 
