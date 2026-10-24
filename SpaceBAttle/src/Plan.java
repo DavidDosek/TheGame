@@ -51,7 +51,7 @@ public class Plan extends JComponent implements KeyListener {
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        //enabled at muzu freeznout isEnabled(); paint component vykresluje prazdny obrazek i kdyz tam nic neni
+        //drawing a different state based of the game state
         if (!freezedScreen) {
             
             g2d.setColor(Color.gray);
@@ -62,12 +62,13 @@ public class Plan extends JComponent implements KeyListener {
             bulletsManager.paintBullets(g2d, getWidth(),getHeight(), false);
             
         } else{
+            //drawing the scene without updating positions and then drawing a seethrough layer
             g2d.setColor(Color.gray);
             g2d.fillRect(0, 0, getWidth(), getHeight());
             player.paintPlayer(g2d);
             bulletsManager.paintBullets(g2d, getWidth(),getHeight(),true);
             player.updatePos(getWidth() / 2, getHeight() / 2);
-            
+            //drawing a seethrough layer
             g2d.setColor(new Color(10, 10, 10,100));
             g2d.fillRect(0, 0, getWidth(), getHeight());
         }
@@ -77,7 +78,10 @@ public class Plan extends JComponent implements KeyListener {
     
 
     public void shoot() {
-        if (player.getHeadX() == mouseX && player.getHeadY() == mouseY) {
+        int xDif = mouseX-player.getX();
+        int yDif = mouseY-player.getY();
+        double distance = Math.sqrt(xDif*xDif+yDif*yDif);
+        if (distance<=player.getTurretHeadLenght()) {
 
         } else {
             bulletsManager.addBullet(player.shoot(mouseX, mouseY));

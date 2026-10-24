@@ -62,7 +62,7 @@ public class BulletManager {
 
     }
 
-    //finise this fumction after doind meteor
+    //to be finished
     public void checkCollision(Bullet b) {
         if (bullets.size() >= 2) {
             for (int i = bullets.indexOf(b); i < bullets.size(); i++) {
