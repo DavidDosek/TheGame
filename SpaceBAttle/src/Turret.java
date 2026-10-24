@@ -1,4 +1,6 @@
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
@@ -76,7 +78,7 @@ public class Turret {
         int x = headX;
         int y = headY;
         double angle = this.angle;
-        
+
         Bullet b = new Bullet(x, y, targetX, targetY, 1, 10);
         return b;
     }
@@ -121,7 +123,7 @@ public class Turret {
         return y;
     }
 
-    public int getTurretWidth() {
+    private int getTurretWidth() {
         return turretWidth;
     }
 
@@ -133,5 +135,13 @@ public class Turret {
         this.x = x;
         this.y = y;
         setHeadCords(mouseX, mouseY);
+    }
+
+    public void paintPlayer(Graphics2D g2d) {
+        g2d.setColor(Color.gray);
+        //kreslime hrace
+        g2d.drawImage(getBodyTexture(), getPaintX(), getPaintY(), getTurretWidth(), getTurretWidth(), null);
+        //kreslime hlavici
+        g2d.drawImage(getHeadTexture(), getHeadX() - getTurretWidth() / 10, getHeadY() - getTurretWidth() / 10, getTurretWidth() / 5, getTurretWidth() / 5, null);
     }
 }

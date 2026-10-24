@@ -22,6 +22,7 @@ public class Plan extends JComponent implements KeyListener {
     private int mouseX = 1;
     private int mouseY = 1;
     private Turret player;
+    private BulletManager bulletsManager;
     private boolean freezedScreen = false;
 
     public void setMouseX(int mouseX) {
@@ -37,6 +38,7 @@ public class Plan extends JComponent implements KeyListener {
     }
 
     public Plan() {
+        bulletsManager = new BulletManager();
         try {
             player = new Turret(getWidth() / 2, getHeight() / 2, 50, 50);
         } catch (IOException ex) {
@@ -55,59 +57,19 @@ public class Plan extends JComponent implements KeyListener {
             g2d.fillRect(0, 0, getWidth(), getHeight());
             //updejtujeme pozici hraci v pripade resize okna
             player.updatePos(getWidth() / 2, getHeight() / 2, mouseX, mouseY);
-            //kreslime hrace
-
-            g2d.drawImage(player.getBodyTexture(), player.getPaintX(), player.getPaintY(), player.getTurretWidth(), player.getTurretWidth(), null);
-            //kreslime hlavici
-
-            g2d.drawImage(player.getHeadTexture(), player.getHeadX() - player.getTurretWidth() / 10, player.getHeadY() - player.getTurretWidth() / 10, player.getTurretWidth() / 5, player.getTurretWidth() / 5, null);
-            paintBullets(g2d);
+            player.paintPlayer(g2d);
+            bulletsManager.paintBullets(g2d, getWidth(),getHeight());
         }
 
     }
 
-    LinkedList<Bullet> bullets = new LinkedList<>();
-
-    private void paintBullets(Graphics2D g2d) {
-        int i = 0;
-
-        //proc tu je while a ne for each???, zamysli se a bud chytry :)))
-        while (i < bullets.size()) {
-            Bullet b = bullets.get(i);
-            b.updatePos();
-            if (b.getPaintX() > getWidth() || b.getPaintX() < 0 || b.getPaintY() > getHeight() || b.getPaintY() < 0) {
-                bullets.remove(b);
-            } else {
-                g2d.setColor(Color.orange);
-                g2d.fillOval(b.getPaintX(), b.getPaintY(), 10, 10);
-                /* hitbox testing
-             g2d.setColor(Color.green);
-             g2d.drawRect(b.getHitboxX(), b.getHitboxY(), b.getDamage(), b.getDamage());*/
-                // just a test, to be finished checkCollision(b);
-            }
-            i++;
-        }
-
-    }
-
-    //finise this fumction after doind meteor
-    private void checkCollision(Bullet b) {
-        if (bullets.size() >= 2) {
-            for (int i = bullets.indexOf(b); i < bullets.size(); i++) {
-                if (b.checkColision(bullets.get(i).getHitbox())) {
-                    bullets.remove(b);
-                    bullets.remove(i);
-                }
-            }
-        }
-
-    }
+    
 
     public void shoot() {
         if (player.getHeadX() == mouseX && player.getHeadY() == mouseY) {
 
         } else {
-            bullets.add(player.shoot(mouseX, mouseY));
+            bulletsManager.addBullet(player.shoot(mouseX, mouseY));
         }
     }
 

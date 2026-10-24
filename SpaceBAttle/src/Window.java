@@ -1,8 +1,10 @@
+
+import javax.swing.Timer;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author xdosek1
@@ -10,12 +12,20 @@
 public class Window extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Window.class.getName());
+    private final Timer timer;
 
     /**
      * Creates new form Window
      */
     public Window() {
         initComponents();
+
+        timer = new Timer(16, e -> {
+
+            plan1.repaint();
+        });
+
+        timer.start();
     }
 
     /**
@@ -69,9 +79,10 @@ public class Window extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
 
-        plan1.repaint();
+        
 
     }//GEN-LAST:event_formComponentResized
 
@@ -79,16 +90,16 @@ public class Window extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_formMouseMoved
-    //DO A GAME CYCLE USING FALL THROUGH SWITCH AND BOOLEANS
+
     private void plan1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plan1MouseMoved
         if (plan1.isFreezedScreen()) {
             return;
         }
-// TODO add your handling code here:
+
         plan1.setMouseX(evt.getX());
         plan1.setMouseY(evt.getY());
 
-        plan1.repaint();
+
     }//GEN-LAST:event_plan1MouseMoved
 
     private void plan1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_plan1MouseClicked
@@ -104,7 +115,7 @@ public class Window extends javax.swing.JFrame {
         plan1.setMouseY(evt.getY());
         plan1.shoot();
 
-        plan1.repaint();
+
     }//GEN-LAST:event_plan1MousePressed
 
     /**
