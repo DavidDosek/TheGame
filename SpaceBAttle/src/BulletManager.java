@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +38,7 @@ public class BulletManager {
         reloadTimer = new Timer(1000, e -> {
 
             reload(1);
-            System.out.println(curAmmo);
+           // System.out.println(curAmmo);
         });
         reloadTimer.start();
         this.maxAmmo = maxAmmo;
@@ -89,15 +90,14 @@ public class BulletManager {
 
     }
 
-    //to be finished
-    public void checkCollision(Bullet b) {
-        if (bullets.size() >= 2) {
-            for (int i = bullets.indexOf(b); i < bullets.size(); i++) {
-                if (b.checkColision(bullets.get(i).getHitbox())) {
-                    bullets.remove(b);
-                    bullets.remove(i);
-                }
+    //to be finished, testing Pawn enemy
+    public void checkCollision(Rectangle hitbox) {
+        int i = 0;
+        while (i<bullets.size()) {
+            if (hitbox.intersects(bullets.get(i).getHitbox())) {
+                bullets.remove(i);
             }
+            i++;
         }
 
     }

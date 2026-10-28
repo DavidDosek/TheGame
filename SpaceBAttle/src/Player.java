@@ -124,7 +124,7 @@ public class Player {
         return y;
     }
 
-    private int getTurretWidth() {
+    public int getTurretWidth() {
         return turretWidth;
     }
 
@@ -147,6 +147,8 @@ public class Player {
     public void doDamage(int damage) {
         this.health -= damage;
     }
+    
+    
 
     public void updatePos(int x, int y, int mouseX, int mouseY) {
         this.x = x;

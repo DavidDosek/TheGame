@@ -13,8 +13,8 @@ public class Pawn {
 
     private ValueTracker values;
 
-    public Pawn(ValueTracker values) {
-        this.values = values;
+    public Pawn(int x, int y, int damage, int health, int size, int speed, Player player) {
+        this.values = new ValueTracker(x, y, damage, health, size, speed, player);
     }
 
     public void takeDamage(int damage) {
@@ -29,12 +29,12 @@ public class Pawn {
         return values.hitbox;
     }
 
-    public int getX() {
-        return values.x;
+    public int getPaintX() {
+        return values.getPaintX();
     }
 
-    public int getY() {
-        return values.y;
+    public int getPaintY() {
+        return values.getPaintY();
     }
 
     public int getSize() {

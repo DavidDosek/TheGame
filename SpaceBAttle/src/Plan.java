@@ -24,6 +24,7 @@ public class Plan extends JComponent implements KeyListener {
     private Player player;
     private BulletManager bulletsManager;
     private boolean freezedScreen = false;
+    private Pawn testEnemy;
 
     public void setMouseX(int mouseX) {
         this.mouseX = mouseX;
@@ -39,11 +40,14 @@ public class Plan extends JComponent implements KeyListener {
 
     public Plan() {
         bulletsManager = new BulletManager(10);
+        
         try {
             player = new Player(getWidth() / 2, getHeight() / 2, 50, 50,100);
         } catch (IOException ex) {
             System.getLogger(Plan.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
+        
+        testEnemy = new Pawn(0, 0, 10, 100, 10, 1, player);
         addKeyListener(this);
         setFocusable(true);
     }
@@ -60,6 +64,13 @@ public class Plan extends JComponent implements KeyListener {
             player.updatePos(getWidth() / 2, getHeight() / 2, mouseX, mouseY);
             player.paintPlayer(g2d);
             bulletsManager.paintBullets(g2d, getWidth(),getHeight(), false);
+            
+            //test from now on
+            bulletsManager.checkCollision(testEnemy.getHitbox());
+            
+            testEnemy.updatePos(player.getX(), player.getY());
+            g2d.setColor(Color.green);
+            g2d.fillOval(testEnemy.getPaintX(), testEnemy.getPaintY(), testEnemy.getSize(), testEnemy.getSize());
             
         } else{
             //drawing the scene without updating positions and then drawing a seethrough layer

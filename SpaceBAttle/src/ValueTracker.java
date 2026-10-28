@@ -11,8 +11,8 @@ import java.awt.Rectangle;
  */
 public class ValueTracker {
 
-    public int x;
-    public int y;
+    public double x;
+    public double y;
     public int damage;
     public int health;
     public Rectangle hitbox;
@@ -31,17 +31,19 @@ public class ValueTracker {
         this.size = size;
         this.speed = speed;
         hitbox = new Rectangle(x, y, size, size);
+        this.player = player;
+        setDirection();
     }
 
     private void updateHitbox() {
-        hitbox.setLocation(x, y);
+        hitbox.setLocation((int)Math.round(x)-size/2, (int)Math.round(y)-size/2);
     }
 
     private void setDirection() {
-       int xDif = player.getX() - x;
-       int yDif = player.getY() - y;
-        double hypotenuse = Math.hypot(yDif, xDif);
-        if (hypotenuse == 0) {
+       double xDif = player.getX() - x;
+       double yDif = player.getY() - y;
+        double hypotenuse = Math.hypot(xDif, yDif);
+        if (hypotenuse <=player.getTurretWidth()) {
             state = EnemyState.ATTACKING;
             xDirection = 0;
             yDirection = 0;
@@ -51,6 +53,7 @@ public class ValueTracker {
             xDirection = xDif/hypotenuse;
             yDirection = yDif/hypotenuse;
         }
+        
 
     }
 
@@ -60,8 +63,10 @@ public class ValueTracker {
         }
 }
     public void updatePos(int playerX, int playerY) {
+        setDirection();
        x += xDirection*speed;
        y += yDirection*speed;
+        
         updateHitbox();
         isAlive();
     }
@@ -73,6 +78,14 @@ public class ValueTracker {
         } else{
             return true;
         }
+    }
+    
+    public int getPaintX() {
+        return (int)Math.round(x)-size/2;
+    }
+
+    public int getPaintY() {
+        return (int)Math.round(y)-size/2;
     }
 
 }
