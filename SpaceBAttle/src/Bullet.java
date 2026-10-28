@@ -52,8 +52,8 @@ public class Bullet {
         return damage;
     }
     public void updatePos(){
-        x = x+ xDir * speed;
-        y = y+ yDir * speed;
+        x += xDir * speed;
+        y +=  yDir * speed;
         hitbox.setLocation((int)Math.round(x)-damage/2, (int)Math.round(y)-damage/2);
        
     }

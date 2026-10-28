@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
  *
  * @author xdosek1
  */
-public class Turret {
+public class Player {
 
     private int x; //turret x pos
     private int y; //turret y pos
@@ -31,8 +31,9 @@ public class Turret {
     private double angle;
     private BufferedImage bodyTexture;
     private BufferedImage headTexture;
+    private int health;
 
-    public Turret(int x, int y, int turretHeadLenght, int turretWidth) throws IOException {
+    public Player(int x, int y, int turretHeadLenght, int turretWidth,int health) throws IOException {
         this.x = x;
         this.y = y;
         this.headLenght = turretHeadLenght;
@@ -129,6 +130,22 @@ public class Turret {
 
     public int getTurretHeadLenght() {
         return headLenght;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    
+    public void addHealth(int health) {
+        this.health += health;
+    }
+    
+    public void doDamage(int damage) {
+        this.health -= damage;
     }
 
     public void updatePos(int x, int y, int mouseX, int mouseY) {

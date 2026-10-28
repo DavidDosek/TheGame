@@ -21,7 +21,7 @@ public class Plan extends JComponent implements KeyListener {
 
     private int mouseX = 1;
     private int mouseY = 1;
-    private Turret player;
+    private Player player;
     private BulletManager bulletsManager;
     private boolean freezedScreen = false;
 
@@ -40,7 +40,7 @@ public class Plan extends JComponent implements KeyListener {
     public Plan() {
         bulletsManager = new BulletManager(10);
         try {
-            player = new Turret(getWidth() / 2, getHeight() / 2, 50, 50);
+            player = new Player(getWidth() / 2, getHeight() / 2, 50, 50,100);
         } catch (IOException ex) {
             System.getLogger(Plan.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
